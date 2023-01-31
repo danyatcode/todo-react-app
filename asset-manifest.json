@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/todo-react-app/static/css/main.1b7fd2ee.css",
+    "main.js": "/todo-react-app/static/js/main.2f37ed5a.js",
+    "static/media/icomoon.svg?10si43": "/todo-react-app/static/media/icomoon.9cc47145c3e61b03d8b8.svg",
+    "static/media/icomoon.eot?10si43": "/todo-react-app/static/media/icomoon.8b8f9ff3c2746bcd479b.eot",
+    "static/media/icomoon.woff?10si43": "/todo-react-app/static/media/icomoon.ea68cea3e4f47f1e3338.woff",
+    "static/media/icomoon.ttf?10si43": "/todo-react-app/static/media/icomoon.46b5067758e501c1cc60.ttf",
+    "static/media/feather.svg?bv5i04": "/todo-react-app/static/media/feather.6229b50456f31a30ce2b.svg",
+    "static/media/feather.eot?bv5i04": "/todo-react-app/static/media/feather.91f1e6396f978fc787ee.eot",
+    "static/media/feather.woff?bv5i04": "/todo-react-app/static/media/feather.17f9ed1ee9e2deffc9ec.woff",
+    "static/media/feather.ttf?bv5i04": "/todo-react-app/static/media/feather.cf54d8f3839f16a55e94.ttf",
+    "index.html": "/todo-react-app/index.html",
+    "main.1b7fd2ee.css.map": "/todo-react-app/static/css/main.1b7fd2ee.css.map",
+    "main.2f37ed5a.js.map": "/todo-react-app/static/js/main.2f37ed5a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1b7fd2ee.css",
+    "static/js/main.2f37ed5a.js"
+  ]
+}
