@@ -13,7 +13,9 @@ function App() {
   const [filterType, setFilterType] = React.useState('All')
 
   React.useEffect( () =>{
-    localStorage.setItem("itemsArray", JSON.stringify(itemsArray))
+
+    localStorage.setItem("itemsArray", JSON.stringify(itemsArray));
+
   }, [itemsArray])
 
   function filterItems(){
@@ -31,6 +33,7 @@ function App() {
       const array = [];
       return array;
     }
+    
   }
 
   function changeFilterType(){
@@ -45,6 +48,7 @@ function App() {
     const input = document.getElementsByClassName('title-input');
 
     const date = new Date();
+
     setItemsArray(prevItemsArray => {
       const newItem = { 
         value: input[0].value,
@@ -62,7 +66,8 @@ function App() {
     
     const input = document.getElementsByClassName('title-input');
 
-    return setItemsArray(prevItemsArray => {
+    return setItemsArray( prevItemsArray => {
+
       return prevItemsArray.map( item => {
         if(item.id === id){
           return {...item, value : input[0].value}
@@ -71,13 +76,15 @@ function App() {
           return item
         }
       })
+
     })
 
   }
 
   function handleIsDone(id){
 
-    return setItemsArray(prevItemsArray => {
+    return setItemsArray( prevItemsArray => {
+
       return prevItemsArray.map( item => {
         if(item.id === id){
           return {...item, isFilled: !prevItemsArray[prevItemsArray.indexOf(item)].isFilled}
@@ -86,6 +93,7 @@ function App() {
           return item
         }
       })
+
     })
 
   }
@@ -95,13 +103,16 @@ function App() {
     const input = document.getElementsByClassName('title-input');
 
       if(input[0].value){
+
         if(isInputBlankActive.event === 'add'){
           generateItemArray()
         }
         if(isInputBlankActive.event === 'edit'){
           editItemArray(isInputBlankActive.id)
         }
+
         setInputBlankActive(false);
+
       } else{
         alert('Please fill blank');
       } 
@@ -110,6 +121,7 @@ function App() {
   function deleteNote(id){
     
     return setItemsArray(prevItemsArray => {
+
       return prevItemsArray.filter( item => {
         if(item.id === id){
           return false
@@ -118,6 +130,7 @@ function App() {
           return true
         }
       })
+
     })
   }
 
