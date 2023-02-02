@@ -6,31 +6,32 @@ import { nanoid } from 'nanoid'
 
 function App() {
 
-  const [isListEmpty, setIsListEmpty] = React.useState(true);
-
   const [itemsArray, setItemsArray] = React.useState(JSON.parse(localStorage.getItem("itemsArray")) || []);
 
   const [isInputBlankActive, setInputBlankActive] = React.useState({isActive : false, event : 'event', id : ''});
 
-  const [itemsArrayDone, setItemsArrayDone] = React.useState(itemsArray.filter( item => item.isFilled));
-
-  const [itemsArrayUndone, setItemsArrayUndone] = React.useState(itemsArray.filter( item => !item.isFilled));
-
   const [filterType, setFilterType] = React.useState('All')
 
   React.useEffect( () =>{
-
     localStorage.setItem("itemsArray", JSON.stringify(itemsArray))
-
-    itemsArray.length !== 0? setIsListEmpty(false) : setIsListEmpty(true);
-    function filterItems(){
-      setItemsArrayDone(itemsArray.filter( item => item.isFilled));
-
-      setItemsArrayUndone(itemsArray.filter( item => !item.isFilled))
-    }
-    filterItems()
-    
   }, [itemsArray])
+
+  function filterItems(){
+      
+    if(filterType === 'All'){
+      return itemsArray;
+    }
+    if(filterType === 'Done'){
+      return itemsArray.filter( item => item.isFilled);
+    }
+    if(filterType === 'Undone'){
+      return itemsArray.filter( item => !item.isFilled)
+    }
+    else{
+      const array = [];
+      return array;
+    }
+  }
 
   function changeFilterType(){
 
@@ -120,7 +121,7 @@ function App() {
     })
   }
 
-  const itemList = filterType === 'All'? itemsArray.map( item => {
+  const itemList = filterItems().map( item => {
     return <ListItem 
         handleIsDone={handleIsDone} 
         key={item.id} id={item.id} 
@@ -132,31 +133,7 @@ function App() {
         confirmBlank={confirmBlank}
         isInputBlankActive={isInputBlankActive}
     />
-  }):filterType === 'Done'? itemsArrayDone.map( item => {
-    return <ListItem 
-        handleIsDone={handleIsDone} 
-        key={item.id} id={item.id} 
-        value={item.value} 
-        date={item.date} 
-        isDone={item.isFilled}
-        deleteNote={deleteNote}
-        popUpInputBlank={setInputBlankActive}
-        confirmBlank={confirmBlank}
-        isInputBlankActive={isInputBlankActive}
-    />
-  }): itemsArrayUndone.map( item => {
-    return <ListItem 
-        handleIsDone={handleIsDone} 
-        key={item.id} id={item.id} 
-        value={item.value} 
-        date={item.date} 
-        isDone={item.isFilled}
-        deleteNote={deleteNote}
-        popUpInputBlank={setInputBlankActive}
-        confirmBlank={confirmBlank}
-        isInputBlankActive={isInputBlankActive}
-    />
-  })
+  });
 
   return (
     <div className="App">
@@ -176,9 +153,9 @@ function App() {
       />}
       
         <div className="item-list">
-            {isListEmpty && <h5 className="todos-state">No tasks to do</h5>}
+            {itemList.length === 0 && <h5 className="todos-state">No tasks to do</h5>}
             {
-                !isListEmpty && 
+                itemList && 
                 <div>{itemList}</div>
             }
         </div>
